@@ -1,0 +1,167 @@
+@import '../reset.css';
+
+.hamb {
+   width: 36px;
+   height: 36px;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+   cursor: pointer;
+}
+
+.hamb span {
+   width: 30px;
+   height: 2px;
+   background-color: #121212;
+}
+
+
+.tracks {
+   display: flex;
+   margin-top: 62px;
+   font-family: Roboto;
+   font-style: normal;
+   font-weight: normal;
+   font-size: 20px;
+   line-height: 23px;
+   color: #7D7D7D;
+}
+#active_catalog>a{
+   font-family: Roboto;
+   font-style: normal;
+   font-weight: normal;
+   font-size: 20px;
+   line-height: 23px;
+   color: #514A7E;
+}
+#active_catalog>a:hover{
+   text-decoration: none;
+}
+.tracks>li>a {
+   font-family: Roboto;
+   font-style: normal;
+   font-weight: normal;
+   font-size: 20px;
+   line-height: 23px;
+   color: #7D7D7D;
+}
+.tracks>li>a:hover {
+   
+   text-decoration: none;
+}
+.catalog__tittle {
+   font-family: Roboto;
+   font-style: normal;
+   font-weight: 300;
+   font-size: 40px;
+   line-height: 87.3%;
+   color: #121212;
+   margin-top: 60px;
+}
+.sort__block {
+   margin-top: 60px;
+   width: 760px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center
+}
+
+.sort {  
+   font-family: Roboto;
+   font-style: normal;
+   font-weight: normal;
+   font-size: 20px;
+   line-height: 23px;
+   color: #7D7D7D;
+}
+
+.whatSort{
+   font-family: Roboto;
+   font-style: normal;
+   font-weight: normal;
+   font-size: 20px;
+   line-height: 23px;
+   color: #121212;
+   cursor: pointer;
+}
+.great__sort {
+   width: max-content;
+   margin-right: 61px;
+}
+.great__sort div {
+   font-family: Roboto;
+   font-style: normal;
+   font-weight: normal;
+   font-size: 20px;
+   line-height: 23px;
+   color: #121212;
+   margin-bottom: 20px;
+}
+
+.size, .color {
+   width: 89px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center
+}
+
+.sort__wrapper {
+   margin-top: 60px;
+   display: flex;
+  
+}
+.catalog__wrapper {
+   display: grid;
+   grid-template-columns: repeat(3,  280px );
+   grid-template-rows: repeat(2, 413px);
+  
+   column-gap: 65px;
+   row-gap: 60px;
+   
+}
+.range input {
+   width: 400px;
+   width: 138px;
+   height: 0px;
+   border: 1px solid #514A7E;
+  
+}
+
+
+.catalog__more {
+   font-family: Roboto;
+   font-style: normal;
+   font-weight: normal;
+   font-size: 20px;
+   line-height: 18px;
+   color: #514A7E;
+   width: 132px;
+   height: 132px;
+   border: 1px solid #514A7E;
+   border-radius: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+   margin: 60px auto 45px auto;
+}
+
+.catalog__more img {
+   margin-left: 6px;
+}
+
+.cataloge__circle {
+   width: 214px;
+   overflow: hidden;
+   position: absolute;
+   top: 130px;
+   right: 0;
+   z-index: -2;
+}
+
+.cataloge__circle>div{
+   width: 429px;
+   height: 429px;
+   border: 1px solid #514A7E;
+   border-radius: 100%
+}
