@@ -447,6 +447,7 @@ body {
    display: flex;
    width: max-content;
    transition: 0.3s;
+   z-index: 8;
    
 }
 
@@ -454,6 +455,7 @@ body {
 .reviews__block__img {
    width: 94px;
    height: 94px;
+  
    filter: drop-shadow(0px 4px 10px rgba(81, 74, 126, 0.4));
 
 }
@@ -461,6 +463,7 @@ body {
    width: 100%;
    height: 100%;
    object-fit: cover;
+   border-radius:100%;
 }
 
 .reviews__post {
@@ -502,6 +505,7 @@ body {
    right: 85px;
    cursor: pointer;
    user-select: none;
+   z-index: 100;
 }
 .reviews__block {
    padding: 0 29px 0 24px;
@@ -511,6 +515,19 @@ body {
    justify-content: space-between;
    align-items: center;
    margin-right: 80px;
+   z-index: -9;
+}
+
+
+#revBlock {
+   padding: 0 29px 0 24px;
+   width: 459px;
+   height: 204px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-right: 80px;
+   z-index: -9;
 }
 .reviews__slider {
    display: flex;
@@ -923,6 +940,7 @@ body {
    font-size: 20px;
    line-height: 23px;
    color: #FFFDF5;
+   transition: all 0.2s;
   
 }
 .hamburger__menu ul li {
@@ -971,19 +989,16 @@ body {
    font-size: 20px;
    line-height: 23px;
    color: #FFFDF5;
+   transition: all 0.2s;
 }
 .cat__active {
    transform: translateX(183px);
    top: 127px;
    display: block;
    transition: 0.5s;
- 
 }
-
-
-
 .my__review {
-  
+   
    height: 0;
    overflow: hidden;
    transition: 0.5s;
@@ -1039,6 +1054,51 @@ body {
    height: 76px;
   
 }
+.raiting_body {
+   position: relative;
+   height: 18.45px;
+   width: 127px;
+   height: 18.27px;
+   margin-top: 17px;
+}
+
+.raiting_item {
+   position: relative;
+   color: #514A7E;
+}
+
+.raitings {
+
+   display: flex;
+   flex-direction: row-reverse;
+}
+.raitings input {
+   visibility: hidden
+}
+
+
+.raiting_item::before {
+   content: '★';
+   display: flex;
+   transition: 0.3s;
+   width: 100%;
+   font-size: 19px;
+   position: absolute;
+   top: -8px;
+    left: -5px;
+}
+
+
+
+.raitings input:checked,
+.raitings input:checked ~ .raiting_item {
+   color: rgba(219, 147, 13, 0.787)
+}
+.raiting_item:hover, 
+.raiting_item:hover ~ .raiting_item,
+.raiting_item:checked ~ .raiting_item:hover {
+   color: rgb(243, 171, 37)
+}
 .my__review__exit {
    
    width: 47px;
@@ -1056,4 +1116,27 @@ body {
 }
 .my__review__exi__active {
    display: flex;
+}
+
+.thanks_block {
+   
+   width: 370px;
+   border: 2px solid rgba(0,0,0, 0.2);
+   display: none;
+   justify-content: space-around;
+   align-items: center;
+   position: absolute;
+   top: 360px;
+   left: 65px;
+}
+
+.thanks_block img {
+   width: 50px;
+   height: 50px;
+}
+
+.status {
+   width: max-content;
+   color: red;
+   font-size: 25px;
 }

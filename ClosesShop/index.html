@@ -496,13 +496,33 @@
                   <img src="image/myReview/Vector.png" alt="">
                </div>
                <h2 class="my__review__tittle">Ваш отзыв</h2>
-               <form action="">
+               <form class="add_review_form" id="add_review_form" action="">
                   <input name="name" type="text" placeholder="Фамилия и имя">
                   <input class="myReview" name="myReview" type="text" placeholder="Отзыв">
+                     <div>
+                        <div class="raiting_body">
+                           <div class="raitings">
+                              <input id="first" type="radio" name="raiting" value="5">
+                              <label class="raiting_item" for="first"></label>
+                              <input id="second" type="radio" name="raiting" value="4">
+                              <label class="raiting_item" for="second"></label>
+                              <input id="third" type="radio" name="raiting" value="3">
+                              <label class="raiting_item" for="third"></label>
+                              <input id="fourth" type="radio" name="raiting" value="2">
+                              <label class="raiting_item" for="fourth"></label>
+                              <input id="fifth" type="radio" name="raiting" value="1">
+                              <label class="raiting_item" for="fifth"></label>
+                           </div>
+                       </div>
+                     </div>
                   <button>Сохранить
                      <img src="image/cooperation/Arrow 9.png" alt="">
                   </button>
                </form>
+               <div class="thanks_block">
+                  <img src="image/ok/Gtk-ok.svg-removebg-preview.png" alt="">
+                  <div>Спасибо! Мы с вами скоро свяжемся </div>
+               </div>
             </div>
          </div>
       </section>
@@ -697,10 +717,10 @@
             <div class="formDiv_Bg">
                <h3 class="formDiv_Bg__tittle">Приглашаем  к сотрудничеству производителей и поставщиков одежды, обуви и аксессуаров</h3>
 
-               <form action="">
+               <form id="workWithUs" action="">
                   <input name="name" type="text" placeholder="Ваше имя">
                   <input name="email" type="email" placeholder="Номер телефона">
-                  <input name="phone" type="tel" placeholder="Электронная почта">
+                  <input name="phone"  type="tel" placeholder="Электронная почта">
                   <div >
                      <input style="border-radius: 100%;" type="checkbox">
                      <p>Даю согласие на обработку персональных данных</p>
@@ -870,10 +890,11 @@
                   <li><a href="">Маски</a></li>
                </ul>
             </li>
-            <li><a href="">Большие размеры</a></li>
             <li><a href="">Акции</a></li>
          </ul>
       </div>
+
+      
 
       <script src="js/script.js"></script>
   </body>

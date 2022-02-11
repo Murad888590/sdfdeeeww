@@ -1,14 +1,36 @@
 window.addEventListener("DOMContentLoaded", () => {
-   const courusel = (wrapperSel, innerSel, slidersSel, blockSel, btnSel) => {
+   const getData = async(url) => {
+      const res = await fetch(url);
+      if(!res.ok) {
+         console.log("Error")
+      }
+      return await res.json()
+   }
+   
+   const postData = async(url, data) => {
+      const res = await fetch(url, {
+         method: "POST",
+         // headers: {
+         //    'Content-type': 'application/json'
+         // },
+         body: data
+      });
+      
+      return await res.text()
+   }
+   
+   
+
+   const courusel = (innerSel, slidersSel, btnSel) => {
       try{  
-         const wrapper = document.querySelector(wrapperSel),
+         const 
                inner = document.querySelector(innerSel),
-               block = document.querySelector(blockSel),
                sliders = document.querySelectorAll(slidersSel),
                blockWidth = sliders[1].clientWidth,
                btn = document.querySelector(btnSel)
                let offsite = 0;
                btn.addEventListener("click", () => {
+                  console.log(btn)
                   if(offsite >= (parseInt(blockWidth) * (sliders.length - 1)) + (60 * (sliders.length - 1))) {
                      offsite = 0
                   } else {
@@ -17,11 +39,13 @@ window.addEventListener("DOMContentLoaded", () => {
                   inner.style.transform = `translateX(-${offsite}px)`
                   console.log(offsite)
                })
+ 
       }catch (err){}
        
    }
-   courusel (".promotion__caurusel", ".promotion__inner", ".promotion__block", ".promotion__block", '.promotion__next')
-   courusel (".reviews__slider", ".reviews__inner", ".reviews__block", ".reviews__block", '.reviews__arrow') 
+   courusel (".reviews__inner", ".reviews__block",  '.reviews__arrow')
+   courusel (".promotion__inner", ".promotion__block",  '.promotion__next')
+    
 
 
 
@@ -80,7 +104,7 @@ window.addEventListener("DOMContentLoaded", () => {
             li.addEventListener("mouseover", (e) => {
                link[i].setAttribute("id", "active__li");
                if(cat[i]) {
-                  ham.style.width = `400px`
+                  ham.style.width = `420px`
                   cat[i].classList.add("cat__active")
                }
             })
@@ -116,4 +140,60 @@ window.addEventListener("DOMContentLoaded", () => {
             
    }
    addReview(".add_review", ".my__review", ".my__review__exit")
+
+
+      const senForm = (formSel, inputsSel) => {
+         
+
+         const form = document.querySelector(formSel),
+               inputs = document.querySelectorAll(inputsSel);
+
+
+               const clearInputs = () => {
+                  inputs.forEach(input => {
+                     input.value =  input.value.replace(input.value, "")
+                  })
+               }
+         let messages = {
+            loading: "Подождите не много",
+            succes: "Ваш отзыв отправлен",
+            fail: "Что то пошло не так"
+         }
+
+         form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let statusmessage = document.createElement("div");
+            statusmessage.classList.add("status")
+            form.appendChild(statusmessage);
+            statusmessage.textContent = messages.loading;
+            let formData = new FormData(form);
+            postData("server.php", formData)
+            .then(res => {
+               console.log(res)
+               if(form.classList.contains("add_review_form")) {
+                  document.querySelector(".thanks_block").style.display = "flex";
+                  setTimeout(() => {
+                     document.querySelector(".thanks_block").style.display = "none";
+                  }, 2000);
+                  statusmessage.style.display = "none"
+               } else {
+                  statusmessage.textContent = messages.succes;
+                  setTimeout(() => {
+                     statusmessage.style.display = "none"
+                  }, 2000)
+               }
+            })
+            .catch(() => {
+               statusmessage.textContent = messages.fail;
+            })
+            .finally(() => {
+               clearInputs();
+  
+            })
+   
+         })
+        
+      }
+      senForm("#add_review_form", '#add_review_form input');
+      senForm("#workWithUs", "#workWithUs input")
 })
