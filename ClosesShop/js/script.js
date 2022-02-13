@@ -19,7 +19,86 @@ window.addEventListener("DOMContentLoaded", () => {
       return await res.text()
    }
    
+      const getCatalogGood = (wrapSel) => {
+         const wrapper = document.querySelector(wrapSel);
+         let count = 6;
+         let ex = 0;
+
+         const get = () => {
+            getData('db/catalog.json')
+            .then(res => {
+          
+               
+               for (ex; ex<count; ex++) {
+                  const good = document.createElement("div");
+                  good.classList.add("catalog__good");
+                  good.innerHTML = `
+                  <div class="promotion__block__img">
+                  <img src="${res.humans[ex].ImgSrc}" alt="">
+               </div>
+               <div class="promotion__block__footer">
+                  <div class="promotion__price__block">
+                     <div class="promotion__price">
+                        <div class="promotion__curren__price">50.00 р</div>
+                        <div class="promotion__old__price">65.00 р</div>
+                     </div>
+                     <div class="promotion__bock__desc">Блузка женская классная</div>
+                     <button class="promotion__button">Подробнее
+                        <img src="image/promotion/Arrow 9.png" alt="">
+                     </button>
+                  </div>
+                  <div class="promotion__user">
+                     <div class="promotion__user__touch">
+                        <img src="image/header/clarity_heart-line.png" alt="">
+                        <img src="image/header/clarity_shopping-bag-line.png" alt="">
+                     </div>
+                     <div class="promotion__user__stars">
+                        <img src="image/promotion/Vector.png" alt="">
+                        <img src="image/promotion/Vector.png" alt="">
+                        <img src="image/promotion/Vector.png" alt="">
+                        <img src="image/promotion/Vector.png" alt="">
+                     </div>
+                  </div>
+               </div>
+                  `
+                  wrapper.appendChild(good)
+                 
+               }
+                 
+             
+              
+              
+               
    
+        
+             
+       
+            })
+         }
+
+         get()
+
+     
+
+    
+         document.querySelector(".catalog__more").addEventListener("click", () => {
+               
+               ex = count 
+       
+               count+=6
+             
+           
+            
+            get()
+         })
+            
+            
+            
+    
+
+      }
+
+      getCatalogGood(".catalog__wrapper")
 
    const courusel = (innerSel, slidersSel, btnSel) => {
       try{  
@@ -30,14 +109,14 @@ window.addEventListener("DOMContentLoaded", () => {
                btn = document.querySelector(btnSel)
                let offsite = 0;
                btn.addEventListener("click", () => {
-                  console.log(btn)
+                  
                   if(offsite >= (parseInt(blockWidth) * (sliders.length - 1)) + (60 * (sliders.length - 1))) {
                      offsite = 0
                   } else {
                      offsite += parseInt(blockWidth) + 60
                   }
                   inner.style.transform = `translateX(-${offsite}px)`
-                  console.log(offsite)
+                
                })
  
       }catch (err){}
@@ -142,58 +221,61 @@ window.addEventListener("DOMContentLoaded", () => {
    addReview(".add_review", ".my__review", ".my__review__exit")
 
 
-      const senForm = (formSel, inputsSel) => {
+      try{
+         const senForm = (formSel, inputsSel) => {
          
 
-         const form = document.querySelector(formSel),
-               inputs = document.querySelectorAll(inputsSel);
-
-
-               const clearInputs = () => {
-                  inputs.forEach(input => {
-                     input.value =  input.value.replace(input.value, "")
-                  })
-               }
-         let messages = {
-            loading: "Подождите не много",
-            succes: "Ваш отзыв отправлен",
-            fail: "Что то пошло не так"
-         }
-
-         form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            let statusmessage = document.createElement("div");
-            statusmessage.classList.add("status")
-            form.appendChild(statusmessage);
-            statusmessage.textContent = messages.loading;
-            let formData = new FormData(form);
-            postData("server.php", formData)
-            .then(res => {
-               console.log(res)
-               if(form.classList.contains("add_review_form")) {
-                  document.querySelector(".thanks_block").style.display = "flex";
-                  setTimeout(() => {
-                     document.querySelector(".thanks_block").style.display = "none";
-                  }, 2000);
-                  statusmessage.style.display = "none"
-               } else {
-                  statusmessage.textContent = messages.succes;
-                  setTimeout(() => {
-                     statusmessage.style.display = "none"
-                  }, 2000)
-               }
-            })
-            .catch(() => {
-               statusmessage.textContent = messages.fail;
-            })
-            .finally(() => {
-               clearInputs();
-  
-            })
+            const form = document.querySelector(formSel),
+                  inputs = document.querySelectorAll(inputsSel);
    
-         })
-        
-      }
-      senForm("#add_review_form", '#add_review_form input');
-      senForm("#workWithUs", "#workWithUs input")
+   
+                  const clearInputs = () => {
+                     inputs.forEach(input => {
+                        input.value =  input.value.replace(input.value, "")
+                     })
+                  }
+            let messages = {
+               loading: "Подождите не много",
+               succes: "Ваш отзыв отправлен",
+               fail: "Что то пошло не так"
+            }
+   
+            form.addEventListener('submit', (e) => {
+               e.preventDefault();
+               let statusmessage = document.createElement("div");
+               statusmessage.classList.add("status")
+               form.appendChild(statusmessage);
+               statusmessage.textContent = messages.loading;
+               let formData = new FormData(form);
+               postData("server.php", formData)
+               .then(res => {
+                  
+                  if(form.classList.contains("add_review_form")) {
+                     document.querySelector(".thanks_block").style.display = "flex";
+                     setTimeout(() => {
+                        document.querySelector(".thanks_block").style.display = "none";
+                     }, 2000);
+                     statusmessage.style.display = "none"
+                  } else {
+                     statusmessage.textContent = messages.succes;
+                     setTimeout(() => {
+                        statusmessage.style.display = "none"
+                     }, 2000)
+                  }
+               })
+               .catch(() => {
+                  statusmessage.textContent = messages.fail;
+               })
+               .finally(() => {
+                  clearInputs();
+     
+               })
+      
+            })
+           
+         }
+         senForm("#add_review_form", '#add_review_form input');
+         senForm("#workWithUs", "#workWithUs input")
+      }catch{}
+  
 })

@@ -113,11 +113,17 @@
 .catalog__wrapper {
    display: grid;
    grid-template-columns: repeat(3,  280px );
-   grid-template-rows: repeat(2, 413px);
+  
   
    column-gap: 65px;
    row-gap: 60px;
    
+}
+
+.promotion__block__img img{
+   width: 280,4px;
+   height: 319px;
+  object-fit: fill;
 }
 .range input {
    width: 400px;
